@@ -1,0 +1,29 @@
+1.What is meant by FlumeNG
+  * Flume NG is work related to new major revision of Flume and is the subject of this post.
+  * Flume NG uses a single-hop message delivery guarantee semantics to provide end-to-end reliability for the system.
+  * The purpose of Flume is to provide a distributed, reliable, and available system for efficiently collecting, aggregating and moving large amounts of log data from many different sources to a centralized data store.
+  * As Flume became adopted it became clear that certain design choices would need to be reworked in order to address problems reported in the field.
+  * The work necessary to make this change began a few months ago under the JIRA issue FLUME-728. 
+  * This work currently resides on a separate branch by the name flume-728, and is informally referred to as Flume NG.
+  * At the time of writing this post Flume NG had gone through two internal milestones - NG Alpha 1, and NG Alpha 2 and a formal incubator release of Flume NG is in the works.
+
+2.Can Flume provides 100 % reliability to the data flow
+  * Yes,it provide end-to-end reliability of the flow.
+  * By default flume uses a transactional approach in the data flow.
+  * Sources and sinks encapsulated in a transactional repository provides by the channels.
+  * This channels responsible to pass reliably from end to end in the flow.
+  * So it provides 100% reliability to the data flow.
+
+3.Can Flume can distributes data to multiple destinations
+  * Yes, it support multiplexing flow.
+  * The event flows from one sources to mutiple channels and mutiple destinations.
+  * It's acheived by defining a flow multiplexer.
+
+4.Explain about the different channel types in Flume. And which channel type is faster
+  * The 3 different built in channel types available in Flume are-
+      -> MEMORY Channel – Events are read from the source into memory and passed to the sink.
+      -> JDBC Channel – JDBC Channel stores the events in an embedded Derby database.
+      -> FILE Channel – File Channel writes the contents to a file on the file system after reading the event from a source.
+                      - The file is deleted only  after the contents are successfully delivered to the sink.
+  * MEMORY Channel is the fastest channel among the three however has the risk of data loss.
+  * The channel that you choose completely depends on the nature of the big data application and the value of each event.
